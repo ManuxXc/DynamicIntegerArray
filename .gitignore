@@ -1,91 +1,101 @@
 #include <iostream>
 #define FOR(a,b,c)  for(int a=b; (a)<(c);a++)
+
 using namespace std;
-class DynamicIntegerArray{
+
+class DynamicIntegerArray {
 private:
     int *data;
     int size;
+
 public:
-    DynamicIntegerArray(){
+    DynamicIntegerArray() {
         this->size = 0;
         data = new int[0];
     }
-    DynamicIntegerArray(int arr[], int size){
+
+    DynamicIntegerArray(int arr[], int size) {
         this->size = size;
         data = new int[size];
-        FOR(i,0,size){
+        FOR(i, 0, size) {
             data[i] = arr[i];
         }
     }
-    DynamicIntegerArray(const DynamicIntegerArray &n){
+
+    DynamicIntegerArray(const DynamicIntegerArray &n) {
         this->size = n.size;
         data = new int[size];
-        FOR(i,0,size){
+        FOR(i, 0, size) {
             data[i] = n.data[i];
         }
     }
-    void print() const{
-        cout<<"[ ";
-        FOR(i,0,size){
-            cout<< data[i]<<" ";
+
+    void print() const {
+        cout << "[ ";
+        FOR(i, 0, size) {
+            cout << data[i] << " ";
         }
-        cout<<"]";
+        cout << "]";
     }
-    ~DynamicIntegerArray(){
+
+    ~DynamicIntegerArray() {
         delete[] data;
     }
-    void PushBack(int val){
+
+    void PushBack(int val) {
         this->size++;
-        int *temp = new int [size];
+        int *temp = new int[size];
         temp[0] = val;
-        FOR(i,1,size+1){
-            temp[i] = data[i-1];
+        FOR(i, 1, size + 1) {
+            temp[i] = data[i - 1];
         }
         delete[] data;
         data = temp;
     }
-    void Insert(int val, int pos){
+
+    void Insert(int val, int pos) {
         this->size++;
-        int *temp = new int [size];
+        int *temp = new int[size];
         pos--;
         int j = 0;
         temp[pos] = val;
-        FOR(i,0,size+1){
-            if(i == pos){
+        FOR(i, 0, size + 1) {
+            if (i == pos) {
                 j = 1;
             }
-            else{
-            temp[i] = data[i-j];
+            else {
+                temp[i] = data[i - j];
             }
         }
         delete[] data;
         data = temp;
     }
-    void remove(int pos){
+
+    void remove(int pos) {
         this->size--;
-        int *temp = new int [size];
+        int *temp = new int[size];
         pos--;
         int j = 0;
-        FOR(i,0,size){
-            if(i == pos){
+        FOR(i, 0, size) {
+            if (i == pos) {
                 j = 1;
             }
-            else{
-            temp[i] = data[i+j];
+            else {
+                temp[i] = data[i + j];
             }
         }
         delete[] data;
         data = temp;
     }
 };
-int main()
-{
-    int arry[5] = {1,8,9,5,3};
-    DynamicIntegerArray A(arry,5);
+
+int main() {
+    int arry[5] = { 1, 8, 9, 5, 3 };
+    DynamicIntegerArray A(arry, 5);
     A.print();
     A.PushBack(8);
     A.print();
-    A.Insert(7,2);
+    A.Insert(7, 2);
     A.print();
     A.remove(4);
     A.print();
