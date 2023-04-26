@@ -41,7 +41,7 @@ public:
         delete[] data;
     }
 
-    void PushBack(int val) {
+    void pushback(int val) {
         this->size++;
         int *temp = new int[size];
         temp[0] = val;
@@ -52,7 +52,7 @@ public:
         data = temp;
     }
 
-    void Insert(int val, int pos) {
+    void insert(int val, int pos) {
         this->size++;
         int *temp = new int[size];
         pos--;
@@ -90,10 +90,10 @@ public:
 
 int main() {
     int arry[7] = { 1, 8, 9, 5, 3, 6, 8 };
-    DynamicIntegerArray A(arry, 5);
-    A.PushBack(10);
-    A.Insert(9, 5);
-    A.remove(5);
-    A.print();
+    DynamicIntegerArray DIA(arry, 5);
+    DIA.pushback(10);
+    DIA.insert(9, 5);
+    DIA.remove(5);
+    DIA.print();
     return 0;
 }
