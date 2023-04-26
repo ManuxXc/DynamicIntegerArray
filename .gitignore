@@ -1,6 +1,5 @@
-#include <iostream>
-#define FOR(a,b,c)  for(int a=b; (a)<(c);a++)
 
+#include <iostream>
 using namespace std;
 
 class DynamicIntegerArray {
@@ -17,7 +16,7 @@ public:
     DynamicIntegerArray(int arr[], int size) {
         this->size = size;
         data = new int[size];
-        FOR(i, 0, size) {
+        for(int i = 0; i < size; i++) {
             data[i] = arr[i];
         }
     }
@@ -25,14 +24,14 @@ public:
     DynamicIntegerArray(const DynamicIntegerArray &n) {
         this->size = n.size;
         data = new int[size];
-        FOR(i, 0, size) {
+        for(int i = 0; i < size; i++) {
             data[i] = n.data[i];
         }
     }
 
     void print() const {
         cout << "[ ";
-        FOR(i, 0, size) {
+        for(int i = 0; i < size; i++) {
             cout << data[i] << " ";
         }
         cout << "]";
@@ -46,7 +45,7 @@ public:
         this->size++;
         int *temp = new int[size];
         temp[0] = val;
-        FOR(i, 1, size + 1) {
+        for(int i = 1; i < size; i++) {
             temp[i] = data[i - 1];
         }
         delete[] data;
@@ -59,7 +58,7 @@ public:
         pos--;
         int j = 0;
         temp[pos] = val;
-        FOR(i, 0, size + 1) {
+        for(int i = 0; i < size; i++) {
             if (i == pos) {
                 j = 1;
             }
@@ -76,7 +75,7 @@ public:
         int *temp = new int[size];
         pos--;
         int j = 0;
-        FOR(i, 0, size) {
+        for(int i = 0; i < size; i++) {
             if (i == pos) {
                 j = 1;
             }
@@ -90,14 +89,11 @@ public:
 };
 
 int main() {
-    int arry[5] = { 1, 8, 9, 5, 3 };
+    int arry[7] = { 1, 8, 9, 5, 3, 6, 8 };
     DynamicIntegerArray A(arry, 5);
-    A.print();
-    A.PushBack(8);
-    A.print();
-    A.Insert(7, 2);
-    A.print();
-    A.remove(4);
+    A.PushBack(10);
+    A.Insert(9, 5);
+    A.remove(5);
     A.print();
     return 0;
 }
